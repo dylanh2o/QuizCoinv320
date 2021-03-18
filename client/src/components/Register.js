@@ -1,18 +1,17 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {loginUser} from '../store/appSlice';
 import {Form, Input, Button} from 'antd';
 
+const Register = () => {
 
-
-const Login = () => {
-  const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
 
   const handleSubmit = () => {
 
-    dispatch(loginUser({email, password}));
+
   };
   return (
     <Form
@@ -20,6 +19,24 @@ const Login = () => {
       onFinish={handleSubmit}
       //onFinishFailed={onFinishFailed}
     >
+      <Form.Item
+        label="Name"
+        name="name"
+      >
+        <Input
+          value={name}
+          onChange={event => setName(event.target.value)}
+        />
+      </Form.Item>
+      <Form.Item
+        label="Lastname"
+        name="lastname"
+      >
+        <Input
+          value={lastname}
+          onChange={event => setLastname(event.target.value)}
+        />
+      </Form.Item>
       <Form.Item
         label="Username"
         name="username"
@@ -39,17 +56,23 @@ const Login = () => {
           onChange={event => setPassword(event.target.value)}
         />
       </Form.Item>
-
+      <Form.Item
+        label="Retype password"
+        name="password2"
+      >
+        <Input.Password
+          value={password2}
+          onChange={event => setPassword2(event.target.value)}
+        />
+      </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
       </Form.Item>
-
-
     </Form>
 
   );
 };
 
-export default Login;
+export default Register;
