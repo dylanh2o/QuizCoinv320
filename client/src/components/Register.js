@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Form, Input, Button} from 'antd';
+import feathersAPI from '../feathers';
 
 const Register = () => {
 
@@ -9,9 +10,17 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
 
-  const handleSubmit = () => {
+  const [result, setResult] = useState(null);
 
-
+  const handleSubmit = async(e) => {
+e.preventDefault();
+try{
+  const result = await feathersAPI.service('users').create(name, lastname, email, password);
+  setResult(result);
+  console.log(result);
+}catch(error){
+  throw Error(error);
+}
   };
   return (
     <Form
