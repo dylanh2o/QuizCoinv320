@@ -12,16 +12,16 @@ const Register = () => {
 
   const [result, setResult] = useState(null);
 
-  const handleSubmit = async(e) => {
-e.preventDefault();
+  const handleSubmit = async() => {
 try{
-  const result = await feathersAPI.service('users').create(name, lastname, email, password);
+  const result = await feathersAPI.service('users').create({name, lastname, email, password});
   setResult(result);
   console.log(result);
 }catch(error){
   throw Error(error);
 }
   };
+
   return (
     <Form
       name="basic"

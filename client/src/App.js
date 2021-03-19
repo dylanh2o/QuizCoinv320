@@ -1,10 +1,11 @@
 
 import React, {useEffect} from 'react';
 import {Provider as StoreProvider, useDispatch, useSelector} from 'react-redux';
+import { BrowserRouter as Router } from "react-router-dom";
 import {AnimatePresence} from 'framer-motion';
 import store from './store';
 import AppLayout from './components/AppLayout';
-import Login from './components/Login';
+import LoginRegister from './components/LoginRegister';
 import {authenticateUser} from './store/appSlice';
 import Loading from './components/Loading';
 
@@ -28,7 +29,7 @@ const App = () => {
       ) : (
         <>
           {user === null ? (
-            <Login/>
+            <LoginRegister/>
           ) : (
             <AppLayout/>
           )}
@@ -39,9 +40,10 @@ const App = () => {
   );
 };
 const AppContainer = () => (
-
+<Router>
   <StoreProvider store={store}>
       <App/>
   </StoreProvider>
+</Router>
 );
 export default AppContainer;
